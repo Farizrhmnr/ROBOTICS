@@ -1,0 +1,25 @@
+# Add ROS repository
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+# Add apt key
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+
+# Update package list
+sudo apt update
+
+# Install ROS Noetic Desktop-Full
+sudo apt install -y ros-noetic-desktop-full
+
+# Initialize rosdep
+sudo rosdep init
+rosdep update
+
+# Add ROS environment to bashrc
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+# Install Python dependencies for ROS
+sudo apt install -y python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+
+# Check installed ROS version
+echo "ROS Noetic has been successfully installed. Make sure to activate the environment by running 'source /opt/ros/noetic/setup.bash'."
